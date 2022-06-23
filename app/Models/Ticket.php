@@ -9,7 +9,7 @@ use App\Models\Traits\Filterable;
 use App\Models\Traits\Uidable;
 
 
-class Artist extends Model
+class Ticket extends Model
 {
     use HasFactory, Uidable, SoftDeletes, Filterable;
 
@@ -40,8 +40,16 @@ class Artist extends Model
     /**
      * Get the comments for the blog post.
      */
-    public function events()
+    public function event()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasOne(Event::class, 'id', 'event_id');
+    }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function purchase()
+    {
+        return $this->hasOne(Purchase::class, 'id', 'purchase_id');
     }
 }

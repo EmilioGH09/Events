@@ -9,7 +9,7 @@ use App\Models\Traits\Filterable;
 use App\Models\Traits\Uidable;
 
 
-class Artist extends Model
+class Event extends Model
 {
     use HasFactory, Uidable, SoftDeletes, Filterable;
 
@@ -36,12 +36,20 @@ class Artist extends Model
             
         ];
     }
+    
+    /**
+     * Get the comments for the blog post.
+     */
+    public function artist()
+    {
+        return $this->hasOne(Artist::class, 'id', 'artist_id');
+    }
 
     /**
      * Get the comments for the blog post.
      */
-    public function events()
+    public function tickets()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Ticket::class);
     }
 }
